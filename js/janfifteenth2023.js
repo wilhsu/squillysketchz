@@ -1,14 +1,16 @@
 var xoff = 0;
 var yoff = 10000;
 
-let squash;
+// let squash;
+let aarya;
 
 function setup(){
     createCanvas(750,750);
     background(0);
     colorMode(HSL, 360, 100, 100, 100);
 
-    squash = loadImage('../assets/squillyash.png');
+    squilly = loadImage('../assets/squillyash.png');
+    aarya = loadImage('../assets/squaashrya.png');
 }
 
 function draw(){
@@ -18,7 +20,7 @@ function draw(){
     yoff -= 0.01;
 
 
-    image(squash, x, y, squash.width / mouseX, squash.height / mouseY);
+    image(aarya, x, y, aarya.width / mouseX, aarya.height / mouseY);
 
     // noStroke();
     // fill(random(360),100,50,20);

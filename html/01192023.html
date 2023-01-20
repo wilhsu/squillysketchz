@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>portfolio MOCK</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.min.js"></script>
+        <style>
+            body{
+                margin: 0;
+            }
+
+            h1{
+                font-family: compendium,sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 170px;
+                margin: 25px;
+                text-align: center;
+                /* filter: invert(100%); */
+                /* mix-blend-mode:exclusion; */
+                color: white;
+                text-shadow: 0 0 8px fuchsia;
+            }
+
+            li{
+                font-family: neue-haas-grotesk-display,sans-serif;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 40px;
+                padding: 5px;
+                padding-bottom: 15px;
+                border-bottom: solid;
+            }
+
+            p{
+                font-family: neue-haas-grotesk-display,sans-serif;
+                font-weight: 300;
+                font-style: normal;
+            }
+
+            #printList{
+                list-style-type:"\1F9F7";
+            }
+
+            #sitesList{
+                list-style-type: "\2734";
+            }
+
+            #othersList{
+                list-style-type: "\1F4BF";
+            }
+
+
+            .sect{
+                border-right: dashed;
+                padding: 10px;
+                padding-right: 30px;
+                padding-left: 30px;
+                width: 33.33333%;
+            }
+
+            #big{
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                z-index: 10000;
+                justify-content: space-between;
+            }
+
+            canvas{
+                position: relative;
+                z-index: -200000;
+                margin: 0;
+            }
+
+            .images{
+                width: 100%;
+                filter: invert();
+            }
+
+            .images:hover{
+                box-shadow: 0 0 10px cyan;
+                filter: none;
+            }
+
+            .hide{
+                display: none;
+            }
+
+            .more{
+                text-align: right;
+            }
+
+            li:hover{
+                animation: tilt 0.5s alternate linear infinite;
+            }
+
+            @keyframes tilt{
+                from {transform: rotateX(0deg);}
+                to {transform: rotateX(360deg);}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="big">
+            <div class="sect" id="books">
+                <h1>Print</h1>
+                <ul id="printList">
+                    <li onclick="showHide('001')">Everything But the Crystal Goblet</li>
+                    <div class="hide" id="001">
+                        <p>Everything But The Crystal Goblet is a reading reader project that was inspired by Beatrice Warde’s 1932 essay Printing Should be Invisible or The Crystal Goblet.</p>
+                        <img class="images" src="../assets/hsu_william_everythingbutthecrystalgoblet_03.JPG">
+                        <p class="more">learn more ></p>
+                    </div>
+                    <li>Coca-Cola Energy Brand Book</li>
+                    <li>Fashion Revolution Week Campaign</li>
+                </ul>
+            </div>
+            <div class="sect" id="sites">
+                <h1>Sites</h1>
+                <ul id="sitesList">
+                    <li>Calvin Klein Packaging Generator</li>
+                    <li>WUTZ UR Y2K RING?</li>
+                    <li>Literally Just Me</li>
+                    <li>On Beginnings</li>
+                </ul>
+            </div>
+            <div class="sect" id="others">
+                <h1>Others</h1>
+                <ul id="othersList">
+                    <li>slay</li>
+                </ul>
+            </div>
+        </div>
+        
+        <script>
+            var xoff = 0;
+            var yoff = 10000;
+            let sizeX = 50;
+            let sizeY = 90;
+
+            let squilly;
+
+            function setup(){
+                createCanvas(windowWidth,windowHeight);
+                // background(0);
+                colorMode(HSL, 360, 100, 100, 100);
+                imageMode(CENTER);
+                max_distance = dist(0, 0, width, height);
+
+                squilly = loadImage('../assets/squillabob5.png');
+            }
+
+            function draw(){
+                background(255);
+                var x = map(noise(xoff), 0, 1, 0, width);
+                var y = map(noise(yoff), 0, 1, 0, width);
+                xoff += 0.01;
+                yoff -= 0.01;
+
+                if (sizeX >= 1000){
+                    sizeX --;
+                    sizeY -= 1.2;
+                } else {
+                    sizeX ++;
+                    sizeY += 1.2;
+                }
+
+                console.log(sizeX);
+
+
+                
+                // for(var i = 0; i <= width; i += 50) {
+                //     for(var j = 0; j <= height; j += 50) {
+                //       var size = dist(mouseX, mouseY, i, j);
+                //       size = size/max_distance * 200;
+                //       image(tibo, x, y, size, size);
+                //   }
+                // }
+                // image(aarya, x, y, aarya.width / mouseX, aarya.height / mouseY);
+                image(squilly, x, y, sizeX, sizeY);
+
+
+
+                // noStroke();
+                // fill(random(360),100,50,20);
+                // rect(x,y,50,50);
+            }
+
+            function showHide(project){
+                let x = document.getElementById(project);
+                if (x.style.display == "block"){
+                    x.style.display = "none";
+                } else {
+                    x.style.display = "block";
+                }
+            }
+        </script>
+
+        <!-- TEMPLATE FOR BLOCK
+        <li onclick="showHide('001')">Everything But the Crystal Goblet</li>
+            <div class="hide" id="001">
+                <p>Everything But The Crystal Goblet is a reading reader project that was inspired by Beatrice Warde’s 1932 essay Printing Should be Invisible or The Crystal Goblet.</p>
+                <img class="images" src="../assets/hsu_william_everythingbutthecrystalgoblet_03.JPG">
+                <p class="more">learn more ></p> 
+            </div>
+        
+        -->
+    </body>
+</html>

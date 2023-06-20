@@ -33,8 +33,8 @@ function draw(){
     //       image(tibo, x, y, size, size);
     //   }
     // }
-    // image(aarya, x, y, aarya.width / mouseX, aarya.height / mouseY);
-    image(tibo, x, y, tibo.width / mouseX, tibo.height / mouseY);
+    image(aarya, x, y, aarya.width / mouseX, aarya.height / mouseY);
+    // image(tibo, x, y, tibo.width / mouseX, tibo.height / mouseY);
 
 
 

@@ -30,7 +30,7 @@ function draw(){
         for(var j = 0; j <= height; j += 10) {
           var size = dist(mouseX, mouseY, i, j);
           size = size/max_distance * 50;
-          image(tibo, i, j, size, size);
+          image(squilly, i, j, size, size);
       }
     }
     // image(aarya, x, y, aarya.width / mouseX, aarya.height / mouseY);
